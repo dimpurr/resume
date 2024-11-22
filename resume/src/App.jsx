@@ -1,37 +1,41 @@
 import React from 'react';
-import { Mail, Globe, Linkedin, Calendar, MapPin, ChevronRight, ExternalLink, Award, Book, Monitor } from 'lucide-react';
+import { Mail, Globe, Linkedin, Calendar, MapPin, ChevronRight, ExternalLink, Award, Book, Monitor, Download } from 'lucide-react';
 
+// 标签组件
 const Tag = ({ children }) => (
-  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-800">
+  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-800">
     {children}
   </span>
 );
 
+// 时间轴项目组件，减少垂直间距
 const TimelineItem = ({ date, children }) => (
-  <div className="relative pl-6 border-l-2 border-blue-50 pb-8 last:pb-0">
-    <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-50 rounded-full border-2 border-blue-500" />
-    <div className="flex justify-between items-start">
+  <div className="relative pl-4 border-l-2 border-blue-50 pb-4 last:pb-0">
+    <div className="absolute -left-1.5 top-1 w-3 h-3 bg-blue-50 rounded-full border-2 border-blue-500" />
+    <div className="flex justify-between items-start gap-4">
       <div className="flex-grow">{children}</div>
-      <span className="text-sm text-gray-500 whitespace-nowrap ml-4">{date}</span>
+      <span className="text-xs text-gray-500 whitespace-nowrap">{date}</span>
     </div>
   </div>
 );
 
+// 章节标题组件
 const SectionTitle = ({ icon: Icon, title }) => (
-  <h2 className="text-xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-gray-100 flex items-center">
-    {Icon && <Icon className="mr-2 text-gray-600" size={20} />}
+  <h2 className="text-lg font-bold text-gray-800 mb-3 pb-1 border-b border-gray-100 flex items-center">
+    {Icon && <Icon className="mr-2 text-gray-600" size={18} />}
     {title}
   </h2>
 );
 
+// 项目卡片组件
 const ProjectCard = ({ title, subtitle, children }) => (
-  <div className="bg-gray-50 rounded-lg p-4 mb-4 last:mb-0">
+  <div className="mb-3 last:mb-0">
     <div className="flex items-start">
-      <ChevronRight size={16} className="text-blue-500 mt-1 flex-shrink-0" />
+      <ChevronRight size={14} className="text-blue-500 mt-1 flex-shrink-0" />
       <div>
-        <h4 className="font-semibold text-gray-700">{title}</h4>
-        {subtitle && <p className="text-sm text-gray-500 mt-1">{subtitle}</p>}
-        <div className="text-sm text-gray-600 leading-relaxed mt-2">
+        <h4 className="font-semibold text-gray-700 text-sm">{title}</h4>
+        {subtitle && <p className="text-xs text-gray-500">{subtitle}</p>}
+        <div className="text-xs text-gray-600 leading-relaxed mt-1">
           {children}
         </div>
       </div>
@@ -39,27 +43,29 @@ const ProjectCard = ({ title, subtitle, children }) => (
   </div>
 );
 
+// 课程部分组件
 const CourseSection = ({ title, children }) => (
-  <div className="bg-gray-50 rounded-lg p-4 mb-4">
-    <h4 className="font-semibold text-gray-700 mb-2">{title}</h4>
-    <div className="text-sm text-gray-600 leading-relaxed">
+  <div className="mb-3">
+    <h4 className="font-semibold text-gray-700 text-sm mb-1">{title}</h4>
+    <div className="text-xs text-gray-600 leading-relaxed">
       {children}
     </div>
   </div>
 );
 
+// 经验卡片组件
 const ExperienceCard = ({ company, department, role, date, children, tags }) => (
-  <div className="bg-gray-50 rounded-lg p-4 mb-4 last:mb-0">
-    <div className="mb-3">
-      <h3 className="font-bold text-gray-800">{company}</h3>
-      {department && <p className="text-sm text-gray-600">{department}</p>}
-      <p className="text-sm text-gray-500 mt-1">{role} | {date}</p>
+  <div className="mb-4 last:mb-0">
+    <div className="mb-1">
+      <h3 className="font-bold text-gray-800 text-sm">{company}</h3>
+      {department && <p className="text-xs text-gray-600">{department}</p>}
+      <p className="text-xs text-gray-500">{role} | {date}</p>
     </div>
-    <div className="text-sm text-gray-600 leading-relaxed">
+    <div className="text-xs text-gray-600 leading-relaxed">
       {children}
     </div>
     {tags && (
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="mt-2 flex flex-wrap gap-1">
         {tags.map((tag, index) => (
           <Tag key={index}>{tag}</Tag>
         ))}
@@ -68,50 +74,81 @@ const ExperienceCard = ({ company, department, role, date, children, tags }) => 
   </div>
 );
 
+// 活动卡片组件
 const ActivityCard = ({ organization, role, detail }) => (
-  <div className="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-blue-500 before:rounded-full mb-4 last:mb-0">
-    <p className="text-gray-700 font-medium">{organization}</p>
-    <p className="text-gray-600 text-sm">{role}</p>
-    {detail && <p className="text-gray-500 text-sm mt-1">{detail}</p>}
+  <div className="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:bg-blue-500 before:rounded-full mb-3 last:mb-0">
+    <p className="text-sm text-gray-700 font-medium">{organization}</p>
+    <p className="text-xs text-gray-600">{role}</p>
+    {detail && <p className="text-xs text-gray-500 mt-0.5">{detail}</p>}
   </div>
 );
 
+// PDF导出函数
+const exportToPDF = () => {
+  window.print();
+};
+
 const Resume = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-6">
-      <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-sm">
-        {/* Header */}
-        <header className="text-center pt-12 pb-8 px-8 border-b border-gray-100">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">陈旸</h1>
-          <div className="flex flex-wrap justify-center gap-6 text-gray-600">
-            <a href="mailto:dimcheny@gmail.com" className="flex items-center hover:text-blue-600 transition-colors">
-              <Mail size={16} className="mr-2" />
+    <div className="w-[210mm] mx-auto bg-white print:w-full">
+      {/* 打印样式 */}
+      <style>
+        {`
+          @media print {
+            @page {
+              size: A4;
+              margin: 0;
+            }
+            body {
+              margin: 0;
+              padding: 0;
+            }
+          }
+        `}
+      </style>
+
+      <div className="p-8 print:p-6">
+        {/* 导出按钮 - 仅在非打印时显示 */}
+        <button
+          onClick={exportToPDF}
+          className="fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center gap-2 shadow-sm hover:bg-blue-600 print:hidden"
+        >
+          <Download size={16} />
+          导出PDF
+        </button>
+
+        {/* 头部 */}
+        <header className="text-center mb-6 pb-4 border-b border-gray-100">
+          <h1 className="text-3xl font-bold text-gray-800 mb-3">陈旸</h1>
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+            <a href="mailto:dimcheny@gmail.com" className="flex items-center hover:text-blue-600">
+              <Mail size={14} className="mr-1" />
               dimcheny@gmail.com
             </a>
             <span className="flex items-center">
               +86 13246174701
             </span>
-            <a href="https://ianyangchen.com" className="flex items-center hover:text-blue-600 transition-colors">
-              <Globe size={16} className="mr-2" />
+            <a href="https://ianyangchen.com" className="flex items-center hover:text-blue-600">
+              <Globe size={14} className="mr-1" />
               ianyangchen.com
             </a>
-            <a href="https://linkedin.com/in/dimchen" className="flex items-center hover:text-blue-600 transition-colors">
-              <Linkedin size={16} className="mr-2" />
+            <a href="https://linkedin.com/in/dimchen" className="flex items-center hover:text-blue-600">
+              <Linkedin size={14} className="mr-1" />
               linkedin.com/in/dimchen
             </a>
           </div>
         </header>
 
-        <div className="grid grid-cols-3 gap-8 p-8">
-          {/* Main Column */}
-          <div className="col-span-2 space-y-8">
-            <section>
+        <div className="grid grid-cols-4 gap-6">
+          {/* 主要内容列 */}
+          <div className="col-span-3">
+            <section className="mb-6">
               <SectionTitle icon={Book} title="教育与学术" />
 
               <TimelineItem date="2024 - 至今">
-                <div className="mb-4">
-                  <h3 className="font-bold text-gray-800">伦敦国王学院</h3>
-                  <p className="text-gray-600">数字人文 第二硕士学位</p>
+                <div className="mb-3">
+                  <h3 className="font-bold text-gray-800 text-sm">伦敦国王学院</h3>
+                  <p className="text-xs text-gray-600">数字人文 第二硕士学位</p>
                 </div>
 
                 <CourseSection title="主要课程">
@@ -142,9 +179,9 @@ const Resume = () => {
               </TimelineItem>
 
               <TimelineItem date="2022 - 2023">
-                <div className="mb-4">
-                  <h3 className="font-bold text-gray-800">英国皇家艺术学院</h3>
-                  <p className="text-gray-600">数字艺术 硕士学位</p>
+                <div className="mb-3">
+                  <h3 className="font-bold text-gray-800 text-sm">英国皇家艺术学院</h3>
+                  <p className="text-xs text-gray-600">数字艺术 硕士学位</p>
                 </div>
 
                 <ProjectCard
@@ -171,9 +208,9 @@ const Resume = () => {
               </TimelineItem>
 
               <TimelineItem date="2017 - 2021">
-                <div className="mb-4">
-                  <h3 className="font-bold text-gray-800">北京邮电大学</h3>
-                  <p className="text-gray-600">软件工程 学士学位</p>
+                <div className="mb-3">
+                  <h3 className="font-bold text-gray-800 text-sm">北京邮电大学</h3>
+                  <p className="text-xs text-gray-600">软件工程 学士学位</p>
                 </div>
 
                 <CourseSection title="主要课程">
@@ -202,9 +239,9 @@ const Resume = () => {
             </section>
           </div>
 
-          {/* Side Column */}
-          <div className="col-span-1 space-y-8">
-            <section>
+          {/* 侧边栏 */}
+          <div className="col-span-1">
+            <section className="mb-6">
               <SectionTitle icon={Monitor} title="实习与工作" />
 
               <ExperienceCard
@@ -232,27 +269,24 @@ const Resume = () => {
                 company="MEGVII（Face++）研究院"
                 role="互动游戏开发实习生"
                 date="2018.09 - 2019.09"
-                tags={['Three.js', 'WebCanvas', 'Computer Vision']}
+                tags={['Three.js', 'WebCanvas', 'CV']}
               >
                 基于Three.js、Web-canvas和摄像头人体骨骼视觉识别框架，开发一款教育类HTML5
                 "街头霸王"风格格斗游戏，用于理解人工智能和计算机视觉。
               </ExperienceCard>
             </section>
 
-            <section>
+            <section className="mb-6">
               <SectionTitle icon={Award} title="学术活动" />
-
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div>
                 <ActivityCard
                   organization="中国人民大学"
                   role="《数字人文》期刊学生审稿人"
                 />
-
                 <ActivityCard
                   organization="牛津大学"
                   role="2024年牛津数字人文暑期学校"
                 />
-
                 <ActivityCard
                   organization="爱丁堡大学"
                   role="2024年数字人文与研究软件工程暑期学校"
@@ -261,36 +295,35 @@ const Resume = () => {
               </div>
             </section>
 
-            <section>
+            <section className="mb-6">
               <SectionTitle icon={ExternalLink} title="展览经历" />
-
-              <div className="bg-gray-50 rounded-lg p-4 space-y-4">
+              <div className="space-y-2">
                 <div>
-                  <h4 className="font-semibold text-gray-700">Out of the Blue Drill Hall</h4>
-                  <p className="text-sm text-gray-600">混合媒体（虚拟现实）组</p>
-                  <p className="text-sm text-gray-500">2024.11.11-16</p>
+                  <h4 className="font-semibold text-gray-700 text-sm">Out of the Blue Drill Hall</h4>
+                  <p className="text-xs text-gray-600">混合媒体（虚拟现实）组</p>
+                  <p className="text-xs text-gray-500">2024.11.11-16</p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-700">Flux Wave: Bounce</h4>
-                  <p className="text-sm text-gray-600">数字时尚 AR & VR 分区</p>
-                  <p className="text-sm text-gray-500">2023.07</p>
+                  <h4 className="font-semibold text-gray-700 text-sm">Flux Wave: Bounce</h4>
+                  <p className="text-xs text-gray-600">数字时尚 AR & VR 分区</p>
+                  <p className="text-xs text-gray-500">2023.07</p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-700">RCA2023毕业展</h4>
-                  <p className="text-sm text-gray-600">巴特西和肯辛顿校区</p>
-                  <p className="text-sm text-gray-500">2023.06-07</p>
+                  <h4 className="font-semibold text-gray-700 text-sm">RCA2023毕业展</h4>
+                  <p className="text-xs text-gray-600">巴特西和肯辛顿校区</p>
+                  <p className="text-xs text-gray-500">2023.06-07</p>
                 </div>
               </div>
             </section>
 
-            <section>
+            <section className="mb-6">
               <SectionTitle icon={Book} title="技能专长" />
-              <div className="space-y-4">
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-gray-700 mb-2">开发技术</h4>
-                  <div className="flex flex-wrap gap-2">
+              <div className="space-y-3">
+                <div>
+                  <h4 className="font-semibold text-gray-700 text-sm mb-1">开发技术</h4>
+                  <div className="flex flex-wrap gap-1">
                     <Tag>JavaScript</Tag>
                     <Tag>TypeScript</Tag>
                     <Tag>React</Tag>
@@ -301,9 +334,9 @@ const Resume = () => {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-gray-700 mb-2">数据科学</h4>
-                  <div className="flex flex-wrap gap-2">
+                <div>
+                  <h4 className="font-semibold text-gray-700 text-sm mb-1">数据科学</h4>
+                  <div className="flex flex-wrap gap-1">
                     <Tag>PyTorch</Tag>
                     <Tag>TensorFlow</Tag>
                     <Tag>Pandas</Tag>
@@ -312,9 +345,9 @@ const Resume = () => {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-gray-700 mb-2">交互设计</h4>
-                  <div className="flex flex-wrap gap-2">
+                <div>
+                  <h4 className="font-semibold text-gray-700 text-sm mb-1">交互设计</h4>
+                  <div className="flex flex-wrap gap-1">
                     <Tag>Three.js</Tag>
                     <Tag>WebGL</Tag>
                     <Tag>Unity</Tag>
@@ -323,9 +356,9 @@ const Resume = () => {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-gray-700 mb-2">其他工具</h4>
-                  <div className="flex flex-wrap gap-2">
+                <div>
+                  <h4 className="font-semibold text-gray-700 text-sm mb-1">其他工具</h4>
+                  <div className="flex flex-wrap gap-1">
                     <Tag>Git</Tag>
                     <Tag>Docker</Tag>
                     <Tag>CI/CD</Tag>
@@ -338,18 +371,18 @@ const Resume = () => {
           </div>
         </div>
 
-        {/* Footer with additional information */}
-        <footer className="border-t border-gray-100 px-8 py-6">
-          <div className="grid grid-cols-2 gap-8">
+        {/* 页脚信息 */}
+        <footer className="border-t border-gray-100 mt-6 pt-4">
+          <div className="grid grid-cols-2 gap-6 text-sm">
             <div>
-              <h3 className="font-semibold text-gray-700 mb-2">研究兴趣</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="font-semibold text-gray-700 mb-1">研究兴趣</h3>
+              <p className="text-xs text-gray-600">
                 数字人文、人工智能、交互设计、数据可视化、计算音乐学、文化计算
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-700 mb-2">语言能力</h3>
-              <div className="flex gap-4 text-sm text-gray-600">
+              <h3 className="font-semibold text-gray-700 mb-1">语言能力</h3>
+              <div className="flex gap-4 text-xs text-gray-600">
                 <span>中文（母语）</span>
                 <span>英语（流利）</span>
               </div>
