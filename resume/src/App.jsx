@@ -20,7 +20,7 @@ const TimelineItem = ({ date, children }) => (
 );
 
 const SectionTitle = ({ icon: Icon, title }) => (
-  <div className="flex items-center space-x-2 mb-3 pb-1 border-b border-gray-200 mt-5">
+  <div className="flex items-center space-x-2 mb-3 pb-1 border-b border-gray-200 mt-2">
     {Icon && <Icon className="text-blue-600" size={16} />}
     <h2 className="text-base font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
       {title}
@@ -39,7 +39,7 @@ const ProjectCard = ({ title, subtitle, children }) => (
             {subtitle}
           </span>
         )}
-        <p className="text-xs text-gray-600 mt-0.5 leading-relaxed">{children}</p>
+        <p className="text-xs text-gray-700 mt-0.5 leading-relaxed">{children}</p>
       </div>
     </div>
   </div>
@@ -53,11 +53,11 @@ const ExperienceCard = ({ company, department, role, date, children, tags }) => 
         <h3 className="text-sm font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
           {company}
           {department && (
-            <span className="block text-xs text-gray-600 mt-0.5">{department}</span> /* 调整了部门的显示方式 */
+            <span className="block text-xs text-gray-700 mt-0.5">{department}</span> /* 调整了部门的显示方式 */
           )}
         </h3>
-        <p className="text-xs text-gray-600 mt-1">{role}</p> {/* 增加了角色的上边距 */}
-        <p className="text-xs text-gray-600 leading-relaxed mt-2">{children}</p> {/* 增加了描述的上边距 */}
+        <p className="text-xs text-gray-700 mt-1">{role}</p> {/* 增加了角色的上边距 */}
+        <p className="text-xs text-gray-700 leading-relaxed mt-2">{children}</p> {/* 增加了描述的上边距 */}
         {tags && (
           <div className="mt-2.5 flex flex-wrap gap-1.5"> {/* 增加了标签的间距 */}
             {tags.map((tag, index) => (
@@ -73,7 +73,7 @@ const ExperienceCard = ({ company, department, role, date, children, tags }) => 
 const CourseSection = ({ title, children }) => (
   <div className="mb-2 bg-gray-50 rounded-md p-2 hover:bg-gray-100 transition-colors">
     <h4 className="text-sm font-semibold text-gray-700">{title}</h4>
-    <p className="text-xs text-gray-600 leading-relaxed">{children}</p>
+    <p className="text-xs text-gray-700 leading-relaxed">{children}</p>
   </div>
 );
 
@@ -83,7 +83,7 @@ const ActivityCard = ({ organization, role, detail }) => (
     <p className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
       {role}
     </p>
-    <p className="text-xs text-gray-600">{organization}{detail && <span className="text-xs text-gray-500 mt-0.5  before:content-['·'] before:ml-1 before:mr-1">{detail}</span>}
+    <p className="text-xs text-gray-700">{organization}{detail && <span className="text-xs text-gray-500 mt-0.5  before:content-['·'] before:ml-1 before:mr-1">{detail}</span>}
 </p>
   </div>
 );
@@ -101,7 +101,7 @@ const Resume = () => {
 
       <div className="p-6">
         {/* Header Section */}
-        <header className="mb-0 mt-[-10px]">
+        <header className="mb-0 mt-[-]">
           <div className="flex justify-between items-center mb-2">
             <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
               陈旸
@@ -112,7 +112,7 @@ const Resume = () => {
               <Download size={14} />导出PDF
             </button>
           </div>
-          <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+          <div className="flex flex-wrap gap-4 text-sm text-gray-700">
             <a href="mailto:dimcheny@gmail.com" className="flex items-center hover:text-blue-600 transition-colors">
               <Mail size={14} className="mr-1" />dimcheny@gmail.com
             </a>
@@ -137,7 +137,7 @@ const Resume = () => {
               <TimelineItem date="2024 - 至今">
                 <div className="mb-2">
                   <h3 className="text-sm font-bold text-gray-800">伦敦国王学院</h3>
-                  <p className="text-xs text-gray-600">数字人文 第二硕士学位</p>
+                  <p className="text-xs text-gray-700">数字人文 第二硕士学位</p>
                 </div>
 
                 <CourseSection title="主要课程">
@@ -170,7 +170,7 @@ const Resume = () => {
               <TimelineItem date="2022 - 2023">
                 <div className="mb-2">
                   <h3 className="text-sm font-bold text-gray-800">英国皇家艺术学院</h3>
-                  <p className="text-xs text-gray-600">数字艺术 硕士学位</p>
+                  <p className="text-xs text-gray-700">数字艺术 硕士学位</p>
                 </div>
 
                 <ProjectCard
@@ -199,7 +199,7 @@ const Resume = () => {
               <TimelineItem date="2017 - 2021">
                 <div className="mb-2">
                   <h3 className="text-sm font-bold text-gray-800">北京邮电大学</h3>
-                  <p className="text-xs text-gray-600">软件工程 学士学位</p>
+                  <p className="text-xs text-gray-700">软件工程 学士学位</p>
                 </div>
 
                 <CourseSection title="主要课程">
@@ -342,7 +342,7 @@ const Resume = () => {
                   <h4 className="text-sm font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
                     Out of the Blue Drill Hall
                   </h4>
-                  <p className="text-xs text-gray-600">混合媒体（虚拟现实）组</p>
+                  <p className="text-xs text-gray-700">混合媒体（虚拟现实）组</p>
                   <p className="text-xs text-gray-500">2024.11.11-16</p>
                 </div>
 
@@ -350,7 +350,7 @@ const Resume = () => {
                   <h4 className="text-sm font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
                     Flux Wave: Bounce
                   </h4>
-                  <p className="text-xs text-gray-600">数字时尚 AR & VR 分区</p>
+                  <p className="text-xs text-gray-700">数字时尚 AR & VR 分区</p>
                   <p className="text-xs text-gray-500">2023.07</p>
                 </div>
 
@@ -358,7 +358,7 @@ const Resume = () => {
                   <h4 className="text-sm font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
                     RCA2023毕业展
                   </h4>
-                  <p className="text-xs text-gray-600">巴特西和肯辛顿校区</p>
+                  <p className="text-xs text-gray-700">巴特西和肯辛顿校区</p>
                   <p className="text-xs text-gray-500">2023.06-07</p>
                 </div>
               </div>

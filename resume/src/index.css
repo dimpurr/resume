@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 .text-xs {
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 1.4;
 }
