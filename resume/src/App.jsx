@@ -13,14 +13,14 @@ const Tag = ({ children, color = 'blue' }) => (
 const TimelineItem = ({ date, children }) => (
   <div className="relative pl-5 mb-3 last:mb-0">
     <span className="text-xs text-gray-500 float-right">{date}</span>
-    <div className="absolute left-0 top-2 w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 shadow-md"></div>
+    <div className="absolute left-0 top-2 w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600"></div>
     <div className="absolute left-[5px] top-4 bottom-0 w-[1px] bg-gradient-to-b from-blue-200 to-transparent"></div>
     <div className="">{children}</div>
   </div>
 );
 
 const SectionTitle = ({ icon: Icon, title }) => (
-  <div className="flex items-center space-x-2 mb-3 pb-1 border-b border-gray-200">
+  <div className="flex items-center space-x-2 mb-3 pb-1 border-b border-gray-200 mt-5">
     {Icon && <Icon className="text-blue-600" size={16} />}
     <h2 className="text-base font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
       {title}
@@ -46,22 +46,20 @@ const ProjectCard = ({ title, subtitle, children }) => (
 );
 
 const ExperienceCard = ({ company, department, role, date, children, tags }) => (
-  <div className="mb-3 last:mb-0 group">
-    <div className=" justify-between items-start">
-    <p className="text-xs text-gray-500 whitespace-nowrap mt-[-0px] float-right">{date}</p>
-      <div className="flex-grow">
+  <div className="mb-6 last:mb-0 group"> {/* 增加了垂直间距 mb-6 */}
+    <div className="relative">
+      <p className="text-xs text-gray-500 whitespace-nowrap float-right">{date}</p>
+      <div className="">
         <h3 className="text-sm font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
           {company}
           {department && (
-            <><br/><span className="text-xs text-gray-600">
-              {department}
-            </span></>
+            <span className="block text-xs text-gray-600 mt-0.5">{department}</span> /* 调整了部门的显示方式 */
           )}
         </h3>
-        <p className="text-xs text-gray-600">{role}</p>
-        <p className="text-xs text-gray-600 leading-relaxed mt-0.5">{children}</p>
+        <p className="text-xs text-gray-600 mt-1">{role}</p> {/* 增加了角色的上边距 */}
+        <p className="text-xs text-gray-600 leading-relaxed mt-2">{children}</p> {/* 增加了描述的上边距 */}
         {tags && (
-          <div className="mt-1 flex flex-wrap gap-1">
+          <div className="mt-2.5 flex flex-wrap gap-1.5"> {/* 增加了标签的间距 */}
             {tags.map((tag, index) => (
               <Tag key={index} color={index % 2 ? 'green' : 'blue'}>{tag}</Tag>
             ))}
@@ -83,10 +81,10 @@ const ActivityCard = ({ organization, role, detail }) => (
   <div className="relative pl-4 mb-2.5 last:mb-0 group hover:translate-x-1 transition-transform duration-200">
     <div className="absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600"></div>
     <p className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
-      {organization}
+      {role}
     </p>
-    <p className="text-xs text-gray-600">{role}</p>
-    {detail && <p className="text-xs text-gray-500 mt-0.5">{detail}</p>}
+    <p className="text-xs text-gray-600">{organization}{detail && <span className="text-xs text-gray-500 mt-0.5  before:content-['·'] before:ml-1 before:mr-1">{detail}</span>}
+</p>
   </div>
 );
 
@@ -103,7 +101,7 @@ const Resume = () => {
 
       <div className="p-6">
         {/* Header Section */}
-        <header className="mb-4">
+        <header className="mb-0 mt-[-10px]">
           <div className="flex justify-between items-center mb-2">
             <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
               陈旸
@@ -177,7 +175,7 @@ const Resume = () => {
 
                 <ProjectCard
                   title="改进医疗保健项目"
-                  subtitle="帝国理工学院商学院 创业之旅"
+                  subtitle="伦敦帝国理工学院商学院 创业之旅"
                 >
                   基于模糊图网络的可视化医疗援助系统；使用Figma设计用户界面，并开发基于React Flow和Node.js的软件演示，
                   将NHS和BNF的复杂医疗文件转换为交互式可视化流程图
@@ -185,14 +183,14 @@ const Resume = () => {
 
                 <ProjectCard
                   title="人群流动分析项目"
-                  subtitle="帝国理工学院交通工程与建模中心"
+                  subtitle="伦敦帝国理工学院交通工程与建模中心"
                 >
                   利用ViRSE和虚幻引擎模拟拥挤场景中的人流，参与3D建模和服务器端监控，支持100名在线用户实时数据收集
                 </ProjectCard>
 
                 <ProjectCard
                   title="沉浸式叙事空间"
-                  subtitle="法国巴黎蓬皮杜中心，法国国家声学研究所项目展览"
+                  subtitle="法国巴黎蓬皮杜中心 IRCAM VR/AR 项目展览"
                 >
                   基于Houdini Engine for UE开发大规模参数生成世界，实现复杂的物理模拟和MetaSound空间音频控制
                 </ProjectCard>
@@ -218,9 +216,9 @@ const Resume = () => {
 
                 <ProjectCard
                   title="游戏玩家分析研究"
-                  subtitle="中国科学院自动化研究所（科创计划）本科生培养计划，微软亚洲研究院联合研究项目"
+                  subtitle="中国科学院自动化研究所（科创计划）本科生培养计划"
                 >
-                  融合实体序列特征和GCN的移动游戏玩家生命周期分析
+                  融合实体序列特征和GCN的移动游戏玩家生命周期分析，微软亚洲研究院联合研究项目
                 </ProjectCard>
 
                 <CourseSection title="毕业论文">
