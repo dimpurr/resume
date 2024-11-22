@@ -1,36 +1,40 @@
 import React from 'react';
 import { Mail, Globe, Linkedin, Calendar, MapPin, ChevronRight, ExternalLink, Award, Book, Monitor, Download } from 'lucide-react';
 
-const Tag = ({ children }) => (
-  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-800">
+const Tag = ({ children, color = "blue" }) => (
+  <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-${color}-50 text-${color}-800`}>
     {children}
   </span>
 );
 
 const TimelineItem = ({ date, children }) => (
-  <div className="mb-6 last:mb-0">
-    <div className=" justify-between items-start gap-4 mb-2">
-      <span className="text-xs text-gray-500 whitespace-nowrap float-right">{date}</span>
-      <div className="flex-grow">{children}</div>
-    </div>
+  <div className="relative pl-4 mb-4 last:mb-0 before:content-[''] before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:bg-blue-500 before:rounded-full">
+    <span className="text-xs text-gray-500 float-right -mt-1">{date}</span>
+    {children}
   </div>
 );
 
 const SectionTitle = ({ icon: Icon, title }) => (
-  <h2 className="text-lg font-bold text-gray-800 mt-[-20px] mb-3 pb-1 border-b border-gray-100 flex items-center">
-    {Icon && <Icon className="mr-2 text-gray-600" size={18} />}
+  <h2 className="text-lg font-bold text-gray-800 mb-3 pb-1 border-b border-gray-200 flex items-center">
+    {Icon && <Icon className="mr-2 text-gray-600" size={16} />}
     {title}
   </h2>
 );
 
 const ProjectCard = ({ title, subtitle, children }) => (
-  <div className="mt-[-4px] mb-3 last:mb-0">
-    <div className="flex items-start">
+  <div className="mb-2 last:mb-0">
+    <div className="flex items-start gap-2">
       <ChevronRight size={14} className="text-blue-500 mt-1 flex-shrink-0" />
       <div>
-        <h4 className="font-semibold text-gray-700 text-sm">{title} {subtitle && <span className="text-xs text-gray-500">{subtitle}</span>}</h4>
-        
-        <div className="text-xs text-gray-600 leading-relaxed mt-1">
+        <h4 className="font-semibold text-gray-700 text-sm">
+          {title}
+          {subtitle && (
+            <span className="text-xs font-normal text-blue-600 ml-1">
+              {subtitle}
+            </span>
+          )}
+        </h4>
+        <div className="text-xs text-gray-600 leading-relaxed">
           {children}
         </div>
       </div>
@@ -39,8 +43,8 @@ const ProjectCard = ({ title, subtitle, children }) => (
 );
 
 const CourseSection = ({ title, children }) => (
-  <div className="mb-3">
-    <h4 className="font-semibold text-gray-700 text-sm mb-1">{title}</h4>
+  <div className="mb-2">
+    <h4 className="font-semibold text-gray-700 text-sm">{title}</h4>
     <div className="text-xs text-gray-600 leading-relaxed">
       {children}
     </div>
@@ -48,33 +52,21 @@ const CourseSection = ({ title, children }) => (
 );
 
 const ExperienceCard = ({ company, department, role, date, children, tags }) => (
-  <div className="mb-4 last:mb-0">
-    <div className="justify-between items-start gap-4">
-      <span className="text-xs text-gray-500 whitespace-nowrap">{date}</span>
-      <div className="flex-grow">
-        <h3 className="font-bold text-gray-800 text-sm">{company}</h3>
-        {department && <p className="text-xs text-gray-600">{department}</p>}
-        <p className="text-xs text-gray-500">{role}</p>
-        <div className="text-xs text-gray-600 leading-relaxed mt-1">
-          {children}
-        </div>
-        {tags && (
-          <div className="mt-2 flex flex-wrap gap-1">
-            {tags.map((tag, index) => (
-              <Tag key={index}>{tag}</Tag>
-            ))}
-          </div>
-        )}
-      </div>
+  <div className="mb-3 last:mb-0">
+    <span className="text-xs text-gray-500 float-right">{date}</span>
+    <h3 className="font-bold text-gray-800 text-sm">{company}</h3>
+    {department && <p className="text-xs text-gray-600">{department}</p>}
+    <p className="text-xs text-gray-500">{role}</p>
+    <div className="text-xs text-gray-600 leading-relaxed mt-1">
+      {children}
     </div>
-  </div>
-);
-
-const ActivityCard = ({ organization, role, detail }) => (
-  <div className="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:bg-blue-500 before:rounded-full mb-3 last:mb-0">
-    <p className="text-sm text-gray-700 font-medium">{organization}</p>
-    <p className="text-xs text-gray-600">{role}</p>
-    {detail && <p className="text-xs text-gray-500 mt-0.5">{detail}</p>}
+    {tags && (
+      <div className="mt-1 flex flex-wrap gap-1">
+        {tags.map((tag, index) => (
+          <Tag key={index}>{tag}</Tag>
+        ))}
+      </div>
+    )}
   </div>
 );
 
@@ -96,8 +88,7 @@ const Resume = () => {
         `}
       </style>
 
-      <div className="p-8 print:p-6">
-        {/* 导出按钮 */}
+      <div className="p-6">
         <button
           onClick={() => window.print()}
           className="fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center gap-2 shadow-sm hover:bg-blue-600 print:hidden"
@@ -107,34 +98,36 @@ const Resume = () => {
         </button>
 
         {/* 头部 */}
-        <header className="text-center mb-6 pb-4 border-b border-gray-100">
-          <h1 className="text-3xl font-bold text-gray-800 mb-3">陈旸</h1>
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-            <a href="mailto:dimcheny@gmail.com" className="flex items-center hover:text-blue-600">
-              <Mail size={14} className="mr-1" />
-              dimcheny@gmail.com
-            </a>
-            <span className="flex items-center">
-              +86 13246174701
-            </span>
-            <a href="https://ianyangchen.com" className="flex items-center hover:text-blue-600">
-              <Globe size={14} className="mr-1" />
-              ianyangchen.com
-            </a>
-            <a href="https://linkedin.com/in/dimchen" className="flex items-center hover:text-blue-600">
-              <Linkedin size={14} className="mr-1" />
-              linkedin.com/in/dimchen
-            </a>
+        <header className="mb-4 pb-2 border-b border-gray-200">
+          <div className="flex justify-between items-end">
+            <h1 className="text-2xl font-bold text-gray-800">陈旸</h1>
+            <div className="flex gap-4 text-sm text-gray-600">
+              <a href="mailto:dimcheny@gmail.com" className="flex items-center hover:text-blue-600">
+                <Mail size={14} className="mr-1" />
+                dimcheny@gmail.com
+              </a>
+              <span className="flex items-center">
+                +86 13246174701
+              </span>
+              <a href="https://ianyangchen.com" className="flex items-center hover:text-blue-600">
+                <Globe size={14} className="mr-1" />
+                ianyangchen.com
+              </a>
+              <a href="https://linkedin.com/in/dimchen" className="flex items-center hover:text-blue-600">
+                <Linkedin size={14} className="mr-1" />
+                linkedin.com/in/dimchen
+              </a>
+            </div>
           </div>
         </header>
 
-        <div className="grid grid-cols-7 gap-6">
+        <div className="grid grid-cols-7 gap-4">
           {/* 主要内容列 */}
           <div className="col-span-5">
-            <section className="mb-6">
+            <section className="mb-4">
               <SectionTitle icon={Book} title="教育与学术" />
               <TimelineItem date="2024 - 至今">
-                <div className="mb-3">
+                <div className="mb-2">
                   <h3 className="font-bold text-gray-800 text-sm">伦敦国王学院</h3>
                   <p className="text-xs text-gray-600">数字人文 第二硕士学位</p>
                 </div>
@@ -157,17 +150,10 @@ const Resume = () => {
                 >
                   东亚（中日韩）流行音乐歌词中语言混杂现象的英语使用模式分析
                 </ProjectCard>
-
-                <ProjectCard
-                  title="学术论文"
-                  subtitle="2024年中国数字人文年会（CDH2024）会议接收"
-                >
-                  智能-叙事共生：AI与大型语言模型在数字叙事中的应用演进与未来展望
-                </ProjectCard>
               </TimelineItem>
 
               <TimelineItem date="2022 - 2023">
-                <div className="mb-3">
+                <div className="mb-2">
                   <h3 className="font-bold text-gray-800 text-sm">英国皇家艺术学院</h3>
                   <p className="text-xs text-gray-600">数字艺术 硕士学位</p>
                 </div>
@@ -181,54 +167,36 @@ const Resume = () => {
                 </ProjectCard>
 
                 <ProjectCard
-                  title="人群流动分析项目"
-                  subtitle="帝国理工学院交通工程与建模中心"
-                >
-                  利用ViRSE和虚幻引擎模拟拥挤场景中的人流，参与3D建模和服务器端监控，支持100名在线用户实时数据收集
-                </ProjectCard>
-
-                <ProjectCard
                   title="沉浸式叙事空间"
-                  subtitle="法国巴黎蓬皮杜中心，法国国家声学研究所项目展览"
+                  subtitle="法国巴黎蓬皮杜中心展览"
                 >
                   基于Houdini Engine for UE开发大规模参数生成世界，实现复杂的物理模拟和MetaSound空间音频控制
                 </ProjectCard>
               </TimelineItem>
 
               <TimelineItem date="2017 - 2021">
-                <div className="mb-3">
+                <div className="mb-2">
                   <h3 className="font-bold text-gray-800 text-sm">北京邮电大学</h3>
                   <p className="text-xs text-gray-600">软件工程 学士学位</p>
                 </div>
 
                 <CourseSection title="主要课程">
                   Java（SE/EE）、网络服务、Python、大数据挖掘、人工智能、软件工程、面向对象设计、
-                  数据结构与算法、移动应用开发、数据库系统、计算机网络
+                  数据结构与算法、移动应用开发、数据库系统
                 </CourseSection>
-
-                <ProjectCard
-                  title="GIS水质监测平台"
-                  subtitle="智能通信软件与多媒体北京市重点实验室"
-                >
-                  孝义河GIS水质实时模拟监测平台的开发与实现
-                </ProjectCard>
 
                 <ProjectCard
                   title="游戏玩家分析研究"
-                  subtitle="中国科学院自动化研究所（科创计划）本科生培养计划，微软亚洲研究院联合研究项目"
+                  subtitle="中国科学院自动化研究所（科创计划）"
                 >
                   融合实体序列特征和GCN的移动游戏玩家生命周期分析
                 </ProjectCard>
-
-                <CourseSection title="毕业论文">
-                  基于嵌入乐理知识的LSTM的古典音乐生成
-                </CourseSection>
               </TimelineItem>
             </section>
 
-                        <section>
-              <SectionTitle icon={Book} title="技能专长" />
-              <div className="space-y-3 flex">
+            <section>
+              <SectionTitle icon={Monitor} title="技能专长" />
+              <div className="grid grid-cols-2 gap-3">
                 <div>
                   <h4 className="font-semibold text-gray-700 text-sm mb-1">开发技术</h4>
                   <div className="flex flex-wrap gap-1">
@@ -237,8 +205,6 @@ const Resume = () => {
                     <Tag>React</Tag>
                     <Tag>Vue</Tag>
                     <Tag>Node.js</Tag>
-                    <Tag>Python</Tag>
-                    <Tag>Django</Tag>
                   </div>
                 </div>
 
@@ -248,8 +214,7 @@ const Resume = () => {
                     <Tag>PyTorch</Tag>
                     <Tag>TensorFlow</Tag>
                     <Tag>Pandas</Tag>
-                    <Tag>数据可视化</Tag>
-                    <Tag>机器学习</Tag>
+                    <Tag color="green">机器学习</Tag>
                   </div>
                 </div>
 
@@ -260,7 +225,6 @@ const Resume = () => {
                     <Tag>WebGL</Tag>
                     <Tag>Unity</Tag>
                     <Tag>Unreal Engine</Tag>
-                    <Tag>Figma</Tag>
                   </div>
                 </div>
 
@@ -271,19 +235,16 @@ const Resume = () => {
                     <Tag>Docker</Tag>
                     <Tag>CI/CD</Tag>
                     <Tag>Kubernetes</Tag>
-                    <Tag>RESTful API</Tag>
                   </div>
                 </div>
               </div>
             </section>
-
           </div>
 
           {/* 侧边栏 */}
-          <div className="col-span-2 space-y-6">
+          <div className="col-span-2 space-y-4">
             <section>
               <SectionTitle icon={Monitor} title="实习与工作" />
-
               <ExperienceCard
                 company="中国科学技术大学"
                 department="中国合肥综合性国家科学中心人工智能研究院"
@@ -301,8 +262,7 @@ const Resume = () => {
                 date="2020.04 - 2021.04"
                 tags={['React', 'ECharts.js', 'Node.js']}
               >
-                为微信和腾讯新闻内容管理系统实现基于ECharts.js的自定义数据可视化组件库，
-                支持2.47亿月活跃App的新闻文章编辑和缓存。
+                为微信和腾讯新闻内容管理系统实现基于ECharts.js的自定义数据可视化组件库
               </ExperienceCard>
 
               <ExperienceCard
@@ -311,54 +271,46 @@ const Resume = () => {
                 date="2018.09 - 2019.09"
                 tags={['Three.js', 'WebCanvas', 'CV']}
               >
-                基于Three.js、Web-canvas和摄像头人体骨骼视觉识别框架，开发一款教育类HTML5
-                "街头霸王"风格格斗游戏，用于理解人工智能和计算机视觉。
+                基于Three.js和计算机视觉框架，开发教育类HTML5格斗游戏
               </ExperienceCard>
             </section>
 
             <section>
               <SectionTitle icon={Award} title="学术活动" />
-              <div>
-                <ActivityCard
-                  organization="中国人民大学"
-                  role="《数字人文》期刊学生审稿人"
-                />
-                <ActivityCard
-                  organization="牛津大学"
-                  role="2024年牛津数字人文暑期学校"
-                />
-                <ActivityCard
-                  organization="爱丁堡大学"
-                  role="2024年数字人文与研究软件工程暑期学校"
-                  detail="全额奖学金"
-                />
+              <div className="space-y-2">
+                <div className="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-2 before:w-1 before:h-1 before:bg-blue-500 before:rounded-full">
+                  <p className="text-sm text-gray-700 font-medium">中国人民大学</p>
+                  <p className="text-xs text-gray-600">《数字人文》期刊学生审稿人</p>
+                </div>
+                <div className="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-2 before:w-1 before:h-1 before:bg-blue-500 before:rounded-full">
+                  <p className="text-sm text-gray-700 font-medium">牛津大学</p>
+                  <p className="text-xs text-gray-600">2024年牛津数字人文暑期学校</p>
+                </div>
               </div>
             </section>
 
-            <section className="mb-6">
+            <section>
               <SectionTitle icon={ExternalLink} title="展览经历" />
               <div className="space-y-2">
-                <div>
-                  <h4 className="font-semibold text-gray-700 text-sm">Out of the Blue Drill Hall</h4>
+                <div className="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-2 before:w-1 before:h-1 before:bg-blue-500 before:rounded-full">
+                  <h4 className="text-sm text-gray-700 font-medium">Out of the Blue Drill Hall</h4>
                   <p className="text-xs text-gray-600">混合媒体（虚拟现实）组</p>
                   <p className="text-xs text-gray-500">2024.11.11-16</p>
                 </div>
 
-                <div>
-                  <h4 className="font-semibold text-gray-700 text-sm">Flux Wave: Bounce</h4>
+                <div className="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-2 before:w-1 before:h-1 before:bg-blue-500 before:rounded-full">
+                  <h4 className="text-sm text-gray-700 font-medium">Flux Wave: Bounce</h4>
                   <p className="text-xs text-gray-600">数字时尚 AR & VR 分区</p>
                   <p className="text-xs text-gray-500">2023.07</p>
                 </div>
 
-                <div>
-                  <h4 className="font-semibold text-gray-700 text-sm">RCA2023毕业展</h4>
+                <div className="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-2 before:w-1 before:h-1 before:bg-blue-500 before:rounded-full">
+                  <h4 className="text-sm text-gray-700 font-medium">RCA2023毕业展</h4>
                   <p className="text-xs text-gray-600">巴特西和肯辛顿校区</p>
                   <p className="text-xs text-gray-500">2023.06-07</p>
                 </div>
               </div>
             </section>
-
-
           </div>
         </div>
       </div>
