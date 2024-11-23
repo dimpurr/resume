@@ -57,7 +57,7 @@ const ExperienceCard = ({ company, department, role, date, children, tags }) => 
           )}
         </h3>
         <p className="text-xs text-gray-700 mt-1">{role}</p> {/* 增加了角色的上边距 */}
-        <p className="text-xs text-gray-700 leading-relaxed mt-2">{children}</p> {/* 增加了描述的上边距 */}
+        <div className="text-xs text-gray-700 leading-relaxed mt-2">{children}</div> {/* 增加了描述的上边距 */}
         {tags && (
           <div className="mt-2.5 flex flex-wrap gap-1.5"> {/* 增加了标签的间距 */}
             {tags.map((tag, index) => (
@@ -78,9 +78,9 @@ const CourseSection = ({ title, children }) => (
 );
 
 const ActivityCard = ({ organization, role, detail }) => (
-  <div className="relative pl-4 mb-2.5 last:mb-0 group hover:translate-x-1 transition-transform duration-200">
+  <div className="relative pl-3 mr-[-0px] mb-2.5 last:mb-0 group hover:translate-x-1 transition-transform duration-200">
     <div className="absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600"></div>
-    <p className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
+    <p className="text-sm text-[13px] font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
       {role}
     </p>
     <p className="text-xs text-gray-700">{organization}{detail && <span className="text-xs text-gray-500 mt-0.5  before:content-['·'] before:ml-1 before:mr-1">{detail}</span>}
@@ -291,10 +291,11 @@ const Resume = () => {
                 company="中国科学技术大学"
                 department="综合性国家科学中心人工智能研究院"
                 role="全栈开发实习生"
-                date="2023 - 2024"
+                date="2022 - 2024"
                 tags={['LLM', 'Elasticsearch', 'GCP/AWS', 'Kubernetes', 'PostgreSQL']}
               >
-                设计并开发基于差分隐私计算的对话知识库及 P2P 算力平台，支持 BERTopic 知识归类和 GPT Embeddings 向量关联搜索。通过 SQL 触发器实现百万级消息的实时同步。部署容器按需自动扩容和 DevOps 流水线。
+                <p className="mb-2">设计实现基于差分隐私计算的对话知识库及 P2P 算力平台，支持 BERTopic 知识归类和 GPT Embeddings 向量关联搜索。</p>
+                <p className="mb-2">通过 SQL 触发器实现百万级消息的实时同步，部署容器按需自动扩容和 DevOps 流水线。</p>
               </ExperienceCard>
 
               <ExperienceCard
@@ -303,7 +304,7 @@ const Resume = () => {
                 date="2020 - 2021"
                 tags={['React', 'ECharts.js', 'Node.js']}
               >
-                为微信和腾讯新闻内容管理系统实现前端深度自定义数据可视化组件库，支持2.47亿月活跃App的新闻文章编辑和缓存。
+                <p className="mb-2">为微信和腾讯新闻内容管理系统实现前端深度自定义数据可视化组件库，支持 2.47 亿月活 App 的新闻文章编辑和缓存。</p>
               </ExperienceCard>
 
               <ExperienceCard
@@ -312,7 +313,7 @@ const Resume = () => {
                 date="2018 - 2019"
                 tags={['Three.js', 'WebCanvas', 'CV']}
               >
-                利用基于摄像头的人体骨骼视觉识别框架，开发实时动作捕捉控制的“街头霸王”风格 H5 格斗游戏。
+                <p>利用基于摄像头的人体骨骼视觉识别框架，开发实时动作捕捉控制的“街头霸王”风格 H5 格斗游戏。</p>
               </ExperienceCard>
             </section>
 
@@ -321,7 +322,7 @@ const Resume = () => {
               <div className="space-y-1">
                 <ActivityCard
                   organization="中国人民大学"
-                  role="《数字人文》期刊学生审稿人"
+                  role="《数字人文研究》期刊学生审稿人"
                 />
                 <ActivityCard
                   organization="牛津大学"
