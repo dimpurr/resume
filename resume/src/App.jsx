@@ -2,7 +2,7 @@ import React from 'react';
 import { Mail, Globe, Linkedin, Calendar, MapPin, ChevronRight, ExternalLink, Award, Book, Monitor, Download } from 'lucide-react';
 
 const Tag = ({ children, color = 'blue' }) => (
-  <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium transition-colors
+  <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium transition-colors
     ${color === 'blue' ? 'bg-blue-50 text-blue-700 hover:bg-blue-100' :
       color === 'green' ? 'bg-green-50 text-green-700 hover:bg-green-100' :
         'bg-gray-50 text-gray-700 hover:bg-gray-100'}`}>
@@ -53,7 +53,7 @@ const ExperienceCard = ({ company, department, role, date, children, tags }) => 
         <h3 className="text-sm font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
           {company}
           {department && (
-            <span className="block text-xs text-gray-700 mt-0.5">{department}</span> /* 调整了部门的显示方式 */
+            <span className="block text-[13px] text-gray-700 mt-0.5">{department}</span> /* 调整了部门的显示方式 */
           )}
         </h3>
         <p className="text-xs text-gray-700 mt-1">{role}</p> {/* 增加了角色的上边距 */}
@@ -146,24 +146,24 @@ const Resume = () => {
                 </CourseSection>
 
                 <ProjectCard
-                  title="文献研究指南数字化"
-                  subtitle="伦敦国王学院档案馆与利德尔哈特档案中心"
+                  title="研究指南数字化与翻译众包"
+                  subtitle="伦敦国王学院档案馆项目"
                 >
-                  第一次世界大战期间文献研究指南数字化与众包项目
+                  针对第一次世界大战文献系列研究指南，设计标准化元数据、电子目录及国际化平台
                 </ProjectCard>
 
                 <ProjectCard
-                  title="语言混杂现象研究"
+                  title="计算社会语言学中的语码转换现象研究"
                   subtitle="数字人文导论课程项目"
                 >
-                  东亚（中日韩）流行音乐歌词中语言混杂现象的英语使用模式分析
+                  分析东亚（中日韩）流行音乐歌词中语言混杂现象的英语使用模式
                 </ProjectCard>
 
                 <ProjectCard
-                  title="学术论文"
+                  title="AI 数字叙事学术论文"
                   subtitle="2024年中国数字人文年会（CDH2024）会议接收"
                 >
-                  智能-叙事共生：AI与大型语言模型在数字叙事中的应用演进与未来展望
+                  《智能-叙事共生： AI 与大型语言模型在数字叙事中的应用演进与未来展望》
                 </ProjectCard>
               </TimelineItem>
 
@@ -174,25 +174,24 @@ const Resume = () => {
                 </div>
 
                 <ProjectCard
-                  title="改进医疗保健项目"
-                  subtitle="伦敦帝国理工学院商学院 创业之旅"
+                  title="基于模糊图网络的可视化医疗决策辅助系统"
+                  subtitle="伦敦帝国理工学院商学院 创新实验室"
                 >
-                  基于模糊图网络的可视化医疗援助系统；使用Figma设计用户界面，并开发基于React Flow和Node.js的软件演示，
-                  将NHS和BNF的复杂医疗文件转换为交互式可视化流程图
+                  通过 React Flow 组件、联动医药数据库和文本 NLP 自动处理规则，将 NHS 和 BNF（英国国家处方集）的大量复杂医疗规范文档，转换为简单易用的交互式流程图
                 </ProjectCard>
 
                 <ProjectCard
-                  title="人群流动分析项目"
+                  title="利用 VR 技术分析密集人群流动情况"
                   subtitle="伦敦帝国理工学院交通工程与建模中心"
                 >
-                  利用ViRSE和虚幻引擎模拟拥挤场景中的人流，参与3D建模和服务器端监控，支持100名在线用户实时数据收集
+                  利用 ViRSE 框架和 Unreal 引擎模拟拥挤场景中的人流设计实验，参与 3D 建模和服务器端监控模块开发，支持 100 名在线用户实时高精度数据收集
                 </ProjectCard>
 
                 <ProjectCard
-                  title="沉浸式叙事空间"
-                  subtitle="法国巴黎蓬皮杜中心 IRCAM VR/AR 项目展览"
+                  title="参数化生成的沉浸式 VR 叙事空间"
+                  subtitle="法国巴黎蓬皮杜艺术中心 IRCAM 项目展览"
                 >
-                  基于Houdini Engine for UE开发大规模参数生成世界，实现复杂的物理模拟和MetaSound空间音频控制
+                  基于 Houdini Engine for UE 开发动态生成环境，实现复杂物理模拟和碰撞系统，通过 LLM 实时生成对话并接入 MetaSound 空间音频
                 </ProjectCard>
               </TimelineItem>
 
@@ -208,21 +207,21 @@ const Resume = () => {
                 </CourseSection>
 
                 <ProjectCard
-                  title="GIS水质监测平台"
+                  title="孝义河水质污染模拟实时模拟监测平台"
                   subtitle="智能通信软件与多媒体北京市重点实验室"
                 >
-                  孝义河GIS水质实时模拟监测平台的开发与实现
+                  接入多种实时传感器与物理模拟系统，设计并实现全流域水质监看可视化大屏
                 </ProjectCard>
 
                 <ProjectCard
-                  title="游戏玩家分析研究"
-                  subtitle="中国科学院自动化研究所（科创计划）本科生培养计划"
+                  title="腾讯手游玩家生命周期分析"
+                  subtitle="中国科学院自动化研究所 模式识别国家重点实验室"
                 >
-                  融合实体序列特征和GCN的移动游戏玩家生命周期分析，微软亚洲研究院联合研究项目
+                  融合图结构和序列特征进行关系抽取、数据分析和可视化，微软亚洲研究院联合项目
                 </ProjectCard>
 
                 <CourseSection title="毕业论文">
-                  基于嵌入乐理知识的LSTM的古典音乐生成
+                  基于嵌入乐理知识的 LSTM 进行古典音乐生成
                 </CourseSection>
               </TimelineItem>
             </section>
@@ -240,6 +239,7 @@ const Resume = () => {
                     <Tag>Node.js</Tag>
                     <Tag>Python</Tag>
                     <Tag>Django</Tag>
+                    <Tag>HTML/CSS</Tag>
                   </div>
                 </div>
 
@@ -257,11 +257,12 @@ const Resume = () => {
                 <div>
                   <h4 className="text-sm font-semibold text-gray-700 mb-1">交互设计</h4>
                   <div className="flex flex-wrap gap-1">
-                    <Tag>Three.js</Tag>
-                    <Tag>WebGL</Tag>
-                    <Tag>Unity</Tag>
-                    <Tag>Unreal Engine</Tag>
                     <Tag>Figma</Tag>
+                    <Tag>Unreal Engine</Tag>
+                    <Tag>Unity</Tag>
+                    <Tag>Three.js</Tag>
+                    <Tag>After Effects</Tag>
+                    <Tag>TouchDesigner</Tag>
                   </div>
                 </div>
 
@@ -273,6 +274,8 @@ const Resume = () => {
                     <Tag>CI/CD</Tag>
                     <Tag>Kubernetes</Tag>
                     <Tag>RESTful API</Tag>
+                    <Tag>SQL</Tag>
+                    <Tag>TEI/XML</Tag>
                   </div>
                 </div>
               </div>
@@ -289,10 +292,9 @@ const Resume = () => {
                 department="综合性国家科学中心人工智能研究院"
                 role="全栈开发实习生"
                 date="2023 - 2024"
-                tags={['React', 'Node.js', 'Python', 'LLM']}
+                tags={['LLM', 'Elasticsearch', 'GCP/AWS', 'Kubernetes', 'PostgreSQL']}
               >
-                领导设计和开发具有差异化隐私的人工智能对话知识库，支持多个LLM。
-                管理需求、编写PRD、设计用户流和RESTful系统架构。
+                设计并开发基于差分隐私计算的对话知识库及 P2P 算力平台，支持 BERTopic 知识归类和 GPT Embeddings 向量关联搜索。通过 SQL 触发器实现百万级消息的实时同步。部署容器按需自动扩容和 DevOps 流水线。
               </ExperienceCard>
 
               <ExperienceCard
@@ -301,18 +303,16 @@ const Resume = () => {
                 date="2020 - 2021"
                 tags={['React', 'ECharts.js', 'Node.js']}
               >
-                为微信和腾讯新闻内容管理系统实现基于ECharts.js的自定义数据可视化组件库，
-                支持2.47亿月活跃App的新闻文章编辑和缓存。
+                为微信和腾讯新闻内容管理系统实现前端深度自定义数据可视化组件库，支持2.47亿月活跃App的新闻文章编辑和缓存。
               </ExperienceCard>
 
               <ExperienceCard
-                company="MEGVII（Face++）研究院"
+                company="Face++ 旷视研究院"
                 role="互动游戏开发实习生"
                 date="2018 - 2019"
                 tags={['Three.js', 'WebCanvas', 'CV']}
               >
-                基于Three.js、Web-canvas和摄像头人体骨骼视觉识别框架，开发一款教育类HTML5
-                "街头霸王"风格格斗游戏，用于理解人工智能和计算机视觉。
+                利用基于摄像头的人体骨骼视觉识别框架，开发实时动作捕捉控制的“街头霸王”风格 H5 格斗游戏。
               </ExperienceCard>
             </section>
 
@@ -339,15 +339,15 @@ const Resume = () => {
               <SectionTitle icon={ExternalLink} title="展览经历" />
               <div className="space-y-2">
                 <div className="group hover:translate-x-1 transition-transform duration-200">
-                  <h4 className="text-sm font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
+                  <h4 className="text-xs font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
                     Out of the Blue Drill Hall
                   </h4>
                   <p className="text-xs text-gray-700">混合媒体（虚拟现实）组</p>
-                  <p className="text-xs text-gray-500">2024.11.11-16</p>
+                  <p className="text-xs text-gray-500">2024.11</p>
                 </div>
 
                 <div className="group hover:translate-x-1 transition-transform duration-200">
-                  <h4 className="text-sm font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
+                  <h4 className="text-xs font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
                     Flux Wave: Bounce
                   </h4>
                   <p className="text-xs text-gray-700">数字时尚 AR & VR 分区</p>
@@ -355,11 +355,11 @@ const Resume = () => {
                 </div>
 
                 <div className="group hover:translate-x-1 transition-transform duration-200">
-                  <h4 className="text-sm font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
+                  <h4 className="text-xs font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
                     RCA2023毕业展
                   </h4>
                   <p className="text-xs text-gray-700">巴特西和肯辛顿校区</p>
-                  <p className="text-xs text-gray-500">2023.06-07</p>
+                  <p className="text-xs text-gray-500">2023.06</p>
                 </div>
               </div>
             </section>
