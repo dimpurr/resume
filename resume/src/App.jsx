@@ -10,12 +10,19 @@ const Tag = ({ children, color = 'blue' }) => (
   </span>
 );
 
-const TimelineItem = ({ date, children }) => (
-  <div className="relative pl-5 mb-3 last:mb-0">
+const TimelineItem = ({ date, children, img, imgWidth = 56 }) => (
+  <div className="relative pl-5 mb-6 last:mb-0">
+    <div className="flex items-center justify-center float-left mr-2" style={{ width: imgWidth, height: imgWidth }}>
+      <img
+        className="max-w-full max-h-full object-contain"
+        src={img}
+        alt=""
+      />
+    </div>
     <span className="text-xs text-gray-500 float-right">{date}</span>
     <div className="absolute left-0 top-2 w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600"></div>
     <div className="absolute left-[5px] top-4 bottom-0 w-[1px] bg-gradient-to-b from-blue-200 to-transparent"></div>
-    <div className="">{children}</div>
+    <div className="min-h-14">{children}</div>
   </div>
 );
 
@@ -39,29 +46,38 @@ const ProjectCard = ({ title, subtitle, children }) => (
             {subtitle}
           </span>
         )}
-        <p className="text-xs text-gray-700 mt-0.5 leading-relaxed">{children}</p>
+        <p className="text-xs text-gray-700 mt-0 leading-relaxed">{children}</p>
       </div>
     </div>
   </div>
 );
 
-const ExperienceCard = ({ company, department, role, date, children, tags }) => (
-  <div className="mb-6 last:mb-0 group"> {/* 增加了垂直间距 mb-6 */}
+const ExperienceCard = ({ company, department, role, date, children, tags, img, imgWidth = 40 }) => (
+  <div className="mb-6 last:mb-0 group">
     <div className="relative">
-      <p className="text-xs text-gray-500 whitespace-nowrap float-right">{date}</p>
-      <div className="">
+      <p className="text-xs text-gray-500 float-right ml-[10px]">{date}</p>
+      {img && (
+        <div className="flex items-center justify-center float-left mr-2" style={{ width: imgWidth, height: imgWidth }}>
+          <img
+            className="max-w-full max-h-full object-contain"
+            src={img}
+            alt=""
+          />
+        </div>
+      )}
+      <div>
         <h3 className="text-sm font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
           {company}
           {department && (
-            <span className="block text-[13px] text-gray-700 mt-0.5">{department}</span> /* 调整了部门的显示方式 */
+            <span className="block text-[13px] text-gray-700 mt-0.5">{department}</span>
           )}
         </h3>
-        <p className="text-xs text-gray-700 mt-1">{role}</p> {/* 增加了角色的上边距 */}
-        <div className="text-xs text-gray-700 leading-relaxed mt-2">{children}</div> {/* 增加了描述的上边距 */}
+        <p className="text-xs text-gray-700 mt-1">{role}</p>
+        <div className="text-xs text-gray-700 leading-relaxed mt-2">{children}</div>
         {tags && (
-          <div className="mt-2.5 flex flex-wrap gap-1.5"> {/* 增加了标签的间距 */}
+          <div className="mt-2.5 flex flex-wrap gap-1.5">
             {tags.map((tag, index) => (
-              <Tag key={index} color={index % 2 ? 'green' : 'blue'}>{tag}</Tag>
+              <Tag key={index} color={'blue'}>{tag}</Tag>
             ))}
           </div>
         )}
@@ -101,8 +117,8 @@ const Resume = () => {
 
       <div className="p-6">
         {/* Header Section */}
-        <header className="mb-0 mt-[-]">
-          <div className="flex justify-between items-center mb-2">
+        <header className="mb-0 mt-[-6px]">
+          <div className="flex justify-between items-center mb-1">
             <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
               陈旸
             </h1>
@@ -134,9 +150,9 @@ const Resume = () => {
             <section>
               <SectionTitle icon={Book} title="教育与学术" />
 
-              <TimelineItem date="2024 - 至今">
+              <TimelineItem date="2024 - 至今" imgWidth={48} img="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/King%27s_College_London_logo.svg/1573px-King%27s_College_London_logo.svg.png">
                 <div className="mb-2">
-                  <h3 className="text-sm font-bold text-gray-800">伦敦国王学院</h3>
+                  <h3 className="text-base font-bold text-gray-800">伦敦国王学院</h3>
                   <p className="text-xs text-gray-700">数字人文 第二硕士学位</p>
                 </div>
 
@@ -167,9 +183,9 @@ const Resume = () => {
                 </ProjectCard>
               </TimelineItem>
 
-              <TimelineItem date="2022 - 2023">
+              <TimelineItem date="2022 - 2023" imgWidth={48} img="rca.jpg">
                 <div className="mb-2">
-                  <h3 className="text-sm font-bold text-gray-800">英国皇家艺术学院</h3>
+                  <h3 className="text-base font-bold text-gray-800">英国皇家艺术学院</h3>
                   <p className="text-xs text-gray-700">数字艺术 硕士学位</p>
                 </div>
 
@@ -195,9 +211,9 @@ const Resume = () => {
                 </ProjectCard>
               </TimelineItem>
 
-              <TimelineItem date="2017 - 2021">
+              <TimelineItem date="2017 - 2021" imgWidth={42} img="https://upload.wikimedia.org/wikipedia/en/a/af/BUPT_LOGO.png">
                 <div className="mb-2">
-                  <h3 className="text-sm font-bold text-gray-800">北京邮电大学</h3>
+                  <h3 className="text-base font-bold text-gray-800">北京邮电大学</h3>
                   <p className="text-xs text-gray-700">软件工程 学士学位</p>
                 </div>
 
@@ -293,6 +309,8 @@ const Resume = () => {
                 role="全栈开发实习生"
                 date="2022 - 2024"
                 tags={['LLM', 'Elasticsearch', 'GCP/AWS', 'Kubernetes', 'PostgreSQL']}
+                img="https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Logo_of_University_of_Science_and_Technology_of_China.svg/1200px-Logo_of_University_of_Science_and_Technology_of_China.svg.png"
+                imgWidth={36}
               >
                 <p className="mb-2">设计实现基于差分隐私计算的对话知识库及 P2P 算力平台，支持 BERTopic 知识归类和 GPT Embeddings 向量关联搜索。</p>
                 <p className="mb-2">通过 SQL 触发器实现百万级消息的实时同步，部署容器按需自动扩容和 DevOps 流水线。</p>
@@ -303,8 +321,10 @@ const Resume = () => {
                 role="前端开发实习生"
                 date="2020 - 2021"
                 tags={['React', 'ECharts.js', 'Node.js']}
+                img="https://logodownload.org/wp-content/uploads/2019/08/tencent-logo-0.png"
+                imgWidth={36}
               >
-                <p className="mb-2">为微信和腾讯新闻内容管理系统实现前端深度自定义数据可视化组件库，支持 2.47 亿月活 App 的新闻文章编辑和缓存。</p>
+                <p className="mb-2">为微信和腾讯新闻内容管理系统自定义可视化组件库，支持 2.47 亿月活 App 新闻文章编辑和缓存。</p>
               </ExperienceCard>
 
               <ExperienceCard
@@ -312,6 +332,8 @@ const Resume = () => {
                 role="互动游戏开发实习生"
                 date="2018 - 2019"
                 tags={['Three.js', 'WebCanvas', 'CV']}
+                img="https://pbs.twimg.com/profile_images/1239849896124923906/zZmmbhm4_400x400.jpg"
+                imgWidth={36}
               >
                 <p>利用基于摄像头的人体骨骼视觉识别框架，开发实时动作捕捉控制的“街头霸王”风格 H5 格斗游戏。</p>
               </ExperienceCard>
