@@ -1,8 +1,8 @@
 import React from 'react';
-import { Mail, Globe, Linkedin, Calendar, MapPin, ChevronRight, ExternalLink, Award, Book, Monitor, Download } from 'lucide-react';
+import { Mail, Globe, Linkedin, Calendar, MapPin, ChevronRight, ExternalLink, Award, Book, Monitor, Download, Phone } from 'lucide-react';
 
 const Tag = ({ children, color = 'blue' }) => (
-  <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium transition-colors
+  <span className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium transition-colors
     ${color === 'blue' ? 'bg-blue-50 text-blue-700 hover:bg-blue-100' :
       color === 'green' ? 'bg-green-50 text-green-700 hover:bg-green-100' :
         'bg-gray-50 text-gray-700 hover:bg-gray-100'}`}>
@@ -55,7 +55,7 @@ const ProjectCard = ({ title, subtitle, children }) => (
 const ExperienceCard = ({ company, department, role, date, children, tags, img, imgWidth = 40 }) => (
   <div className="mb-6 last:mb-0 group">
     <div className="relative">
-      <p className="text-xs text-gray-500 float-right ml-[10px]">{date}</p>
+      <p className="text-[13px] text-gray-500 float-right ml-[10px]">{date}</p>
       {img && (
         <div className="flex items-center justify-center float-left mr-2" style={{ width: imgWidth, height: imgWidth }}>
           <img
@@ -66,7 +66,7 @@ const ExperienceCard = ({ company, department, role, date, children, tags, img, 
         </div>
       )}
       <div>
-        <h3 className="text-sm font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+        <h3 className="text-[13px] font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
           {company}
           {department && (
             <span className="block text-[13px] text-gray-700 mt-0.5">{department}</span>
@@ -99,8 +99,7 @@ const ActivityCard = ({ organization, role, detail }) => (
     <p className="text-sm text-[13px] font-medium text-gray-700 group-hover:text-blue-600 transition-colors">
       {role}
     </p>
-    <p className="text-xs text-gray-700">{organization}{detail && <span className="text-xs text-gray-500 mt-0.5  before:content-['·'] before:ml-1 before:mr-1">{detail}</span>}
-</p>
+    <p className="text-xs text-gray-700">{organization}{detail && <span className="text-xs text-gray-500 mt-0.5 before:content-['·'] before:ml-1 before:mr-1">{detail}</span>}</p>
   </div>
 );
 
@@ -115,138 +114,151 @@ const Resume = () => {
         }
       `}</style>
 
-      <div className="p-6">
+      <div className="p-4">
         {/* Header Section */}
-        <header className="mb-0 mt-[-6px]">
-          <div className="flex justify-between items-center mb-1">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-              陈旸
-            </h1>
-            <button
-              onClick={() => window.print()}
-              className="print:hidden text-sm bg-gradient-to-r from-blue-500 to-blue-600 text-white px-3 py-1 rounded-md flex items-center gap-1 hover:shadow-md transition-shadow">
-              <Download size={14} />导出PDF
-            </button>
-          </div>
-          <div className="flex flex-wrap gap-4 text-sm text-gray-700">
-            <a href="mailto:dimcheny@gmail.com" className="flex items-center hover:text-blue-600 transition-colors">
-              <Mail size={14} className="mr-1" />dimcheny@gmail.com
-            </a>
-            <span className="flex items-center">
-              +86 13246174701
-            </span>
-            <a href="https://ianyangchen.com" className="flex items-center hover:text-blue-600 transition-colors">
-              <Globe size={14} className="mr-1" />ianyangchen.com
-            </a>
-            <a href="https://linkedin.com/in/dimchen" className="flex items-center hover:text-blue-600 transition-colors">
-              <Linkedin size={14} className="mr-1" />linkedin.com/in/dimchen
-            </a>
+        <header className="mb-6">
+          <div className="flex flex-col gap-1">
+            {/* Name and Title */}
+            <div className="flex items-baseline">
+              <h1 className="text-2xl font-bold text-gray-800">Yang Chen</h1>
+              <span className="ml-2 text-base text-gray-500">
+                Digital Arts & Humanities • Research Software Engineering
+              </span>
+            </div>
+
+            {/* Contact Info */}
+            <div className="flex items-center gap-6 text-sm text-gray-600">
+              <a href="mailto:dimcheny@gmail.com" className="flex items-center hover:text-blue-600 transition-colors">
+                <Mail size={14} className="mr-1.5" />dimcheny@gmail.com
+              </a>
+              <span className="flex items-center">
+                <Phone size={14} className="mr-1.5" />+86 13246174701
+              </span>
+              <a href="https://ianyangchen.com" className="flex items-center hover:text-blue-600 transition-colors">
+                <Globe size={14} className="mr-1.5" />ianyangchen.com
+              </a>
+              <a href="https://linkedin.com/in/dimchen" className="flex items-center hover:text-blue-600 transition-colors">
+                <Linkedin size={14} className="mr-1.5" />linkedin.com/in/dimchen
+              </a>
+            </div>
           </div>
         </header>
 
-        <div className="grid grid-cols-7 gap-5">
+        <div className="grid grid-cols-7 gap-2">
           {/* Main Content Column */}
           <div className="col-span-5 space-y-4">
             <section>
-              <SectionTitle icon={Book} title="教育与学术" />
+              <SectionTitle icon={Book} title="Education" />
 
-              <TimelineItem date="2024 - 至今" imgWidth={48} img="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/King%27s_College_London_logo.svg/1573px-King%27s_College_London_logo.svg.png">
+              <TimelineItem date="2024 - Present" imgWidth={48} img="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/King%27s_College_London_logo.svg/1573px-King%27s_College_London_logo.svg.png">
                 <div className="mb-2">
-                  <h3 className="text-base font-bold text-gray-800">伦敦国王学院</h3>
-                  <p className="text-xs text-gray-700">数字人文 第二硕士学位</p>
+                  <h3 className="text-base font-bold text-gray-800">King's College London</h3>
+                  <p className="text-xs text-gray-700">MA Digital Humanities</p>
                 </div>
 
-                <CourseSection title="主要课程">
-                  人文编码（计算文学、图片与声音）、文化遗产的沟通与传播（元数据与数字档案）、
-                  策划和保存数字文化（数字策展）、选修：数字游玩：游戏中的自我（游戏哲学）
+                <CourseSection title="Key Courses">
+                  Computational and Corpus Linguistics, Communicating and Preservation of Cultural Heritage,
+                  Digital Curating, Video Game Studies
                 </CourseSection>
 
                 <ProjectCard
-                  title="研究指南数字化与翻译众包"
-                  subtitle="伦敦国王学院档案馆项目"
+                  title="AI Three Kingdoms"
+                  subtitle="Research Center for Digital Humanities of Peking University"
                 >
-                  针对第一次世界大战文献系列研究指南，设计标准化元数据、电子目录及国际化平台
+                  "Intelligent-Narrative Symbiosis: AI and LLMs in Digital Storytelling"
                 </ProjectCard>
 
                 <ProjectCard
-                  title="计算社会语言学中的语码转换现象研究"
-                  subtitle="数字人文导论课程项目"
+                  title="Research Guide Digitization & Translation Crowdsourcing"
+                  subtitle="KCL Archive"
                 >
-                  分析东亚（中日韩）流行音乐歌词中语言混杂现象的英语使用模式
+                  Designing standardized metadata, digital catalogs, and internationalization platform for WWI research guide series
                 </ProjectCard>
 
-                <ProjectCard
-                  title="AI 数字叙事学术论文"
-                  subtitle="2024年中国数字人文年会（CDH2024）会议接收"
+                {/* <ProjectCard
+                  title="Code-Switching in Computational Sociolinguistics"
+                  subtitle="Intro2DH"
                 >
-                  《智能-叙事共生： AI 与大型语言模型在数字叙事中的应用演进与未来展望》
+                  Analyzing English usage patterns in East Asian (China, Japan, Korea) pop music lyrics
+                </ProjectCard> */}
+
+                <ProjectCard
+                  title="Accepted Paper in Digital Narratology"
+                  subtitle="Chinese Digital Humanities Conference 2024"
+                >
+                  "Intelligent-Narrative Symbiosis: AI and LLMs in Digital Storytelling", (In Chinese) explored technical-narrative collaboration frameworks in AI-enhanced digital storytelling, with focus on system evolution and interaction patterns
                 </ProjectCard>
               </TimelineItem>
 
               <TimelineItem date="2022 - 2023" imgWidth={48} img="rca.jpg">
                 <div className="mb-2">
-                  <h3 className="text-base font-bold text-gray-800">英国皇家艺术学院</h3>
-                  <p className="text-xs text-gray-700">数字艺术 硕士学位</p>
+                  <h3 className="text-base font-bold text-gray-800">Royal College of Art</h3>
+                  <p className="text-xs text-gray-700">MA Digital Direction</p>
                 </div>
 
                 <ProjectCard
-                  title="基于模糊图网络的可视化医疗决策辅助系统"
-                  subtitle="伦敦帝国理工学院商学院 创新实验室"
+                  title="Fuzzy Graph Network-based Medical Decision Support System"
+                  subtitle="ICBS Innovation Lab"
                 >
-                  通过 React Flow 组件、联动医药数据库和文本 NLP 自动处理规则，将 NHS 和 BNF（英国国家处方集）的大量复杂医疗规范文档，转换为简单易用的交互式流程图
+                  Developed graph-based clinical decision support system using graph database and NLP for medical guideline digitization, transformed complex NHS and BNF medical guidelines into interactive flowcharts
                 </ProjectCard>
 
                 <ProjectCard
-                  title="利用 VR 技术分析密集人群流动情况"
-                  subtitle="伦敦帝国理工学院交通工程与建模中心"
+                  title="VR Crowd Flow Analysis"
+                  subtitle="Imperial College Centre for Transport Engineering & Modeling"
                 >
-                  利用 ViRSE 框架和 Unreal 引擎模拟拥挤场景中的人流设计实验，参与 3D 建模和服务器端监控模块开发，支持 100 名在线用户实时高精度数据收集
+                  Developed 3D modeling and server monitoring modules using ViRSE framework and Unreal Engine,
+                  supporting real-time high-precision data collection for 100 online users
                 </ProjectCard>
 
                 <ProjectCard
-                  title="参数化生成的沉浸式 VR 叙事空间"
-                  subtitle="法国巴黎蓬皮杜艺术中心 IRCAM 项目展览"
+                  title="Parametric Generative VR Narrative Space"
+                  subtitle="Centre Pompidou IRCAM Project Exhibition"
                 >
-                  基于 Houdini Engine for UE 开发动态生成环境，实现复杂物理模拟和碰撞系统，通过 LLM 实时生成对话并接入 MetaSound 空间音频
+                  Developed dynamic world generation using Houdini Engine for UE, implementing physics
+                  simulation and collision systems, with real-time LLM dialogue generation and MetaSound spatial audio
                 </ProjectCard>
               </TimelineItem>
 
               <TimelineItem date="2017 - 2021" imgWidth={42} img="https://upload.wikimedia.org/wikipedia/en/a/af/BUPT_LOGO.png">
                 <div className="mb-2">
-                  <h3 className="text-base font-bold text-gray-800">北京邮电大学</h3>
-                  <p className="text-xs text-gray-700">软件工程 学士学位</p>
+                  <h3 className="text-base font-bold text-gray-800">Beijing University of Posts and Telecommunications</h3>
+                  <p className="text-xs text-gray-700">BSc in Software Engineering</p>
                 </div>
 
-                <CourseSection title="主要课程">
-                  Java（SE/EE）、网络服务、Python、大数据挖掘、人工智能、软件工程、面向对象设计、
-                  数据结构与算法、移动应用开发、数据库系统、计算机网络
+                <CourseSection title="Key Courses">
+                  Java (SE/EE), Web Services, Python, Big Data Mining, Artificial Intelligence, Software Engineering,
+                  Object-Oriented Design, Data Structures & Algorithms, Mobile App Development, Database Systems,
+                  Computer Networks
                 </CourseSection>
 
                 <ProjectCard
-                  title="孝义河水质污染模拟实时模拟监测平台"
-                  subtitle="智能通信软件与多媒体北京市重点实验室"
+                  title="Xiaoyi River Real-time Visualisation Platform"
+                  subtitle="Beijing Key Lab of ITSoftware and Multimedia"
                 >
-                  接入多种实时传感器与物理模拟系统，设计并实现全流域水质监看可视化大屏
+                  Integrated multiple real-time sensors and physical simulation systems to design and implement
+                  full-basin water quality monitoring visualization dashboard
                 </ProjectCard>
 
                 <ProjectCard
-                  title="腾讯手游玩家生命周期分析"
-                  subtitle="中国科学院自动化研究所 模式识别国家重点实验室"
+                  title="Tencent Game Player Lifecycle Analysis"
+                  subtitle="Institute of Automation, Chinese Academy of Sciences"
                 >
-                  融合图结构和序列特征进行关系抽取、数据分析和可视化，微软亚洲研究院联合项目
+                  Integrated graph structures and sequence features for relationship extraction, data analysis,
+                  and visualization, joint project with Microsoft Research Asia
                 </ProjectCard>
 
-                <CourseSection title="毕业论文">
-                  基于嵌入乐理知识的 LSTM 进行古典音乐生成
+                <CourseSection title="Thesis">
+                  Classical Music Generation Using LSTM with Embedded Music Theory Knowledge
                 </CourseSection>
               </TimelineItem>
             </section>
 
             <section>
-              <SectionTitle icon={Monitor} title="技能专长" />
+              <SectionTitle icon={Monitor} title="Skills" />
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 mb-1">开发技术</h4>
+                  <h4 className="text-sm font-semibold text-gray-700 mb-1">Development</h4>
                   <div className="flex flex-wrap gap-1">
                     <Tag>JavaScript</Tag>
                     <Tag>TypeScript</Tag>
@@ -260,18 +272,18 @@ const Resume = () => {
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 mb-1">数据科学</h4>
+                  <h4 className="text-sm font-semibold text-gray-700 mb-1">Data Science</h4>
                   <div className="flex flex-wrap gap-1">
                     <Tag>PyTorch</Tag>
                     <Tag>TensorFlow</Tag>
                     <Tag>Pandas</Tag>
-                    <Tag>数据可视化</Tag>
-                    <Tag>机器学习</Tag>
+                    <Tag>Data Visualization</Tag>
+                    <Tag>Machine Learning</Tag>
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 mb-1">交互设计</h4>
+                  <h4 className="text-sm font-semibold text-gray-700 mb-1">Interaction Design</h4>
                   <div className="flex flex-wrap gap-1">
                     <Tag>Figma</Tag>
                     <Tag>Unreal Engine</Tag>
@@ -283,15 +295,16 @@ const Resume = () => {
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 mb-1">其他工具</h4>
+                  <h4 className="text-sm font-semibold text-gray-700 mb-1">Tools</h4>
                   <div className="flex flex-wrap gap-1">
+                    <Tag>TEI/XML</Tag>
+                    <Tag>SPARQL</Tag>
                     <Tag>Git</Tag>
                     <Tag>Docker</Tag>
                     <Tag>CI/CD</Tag>
                     <Tag>Kubernetes</Tag>
                     <Tag>RESTful API</Tag>
                     <Tag>SQL</Tag>
-                    <Tag>TEI/XML</Tag>
                   </div>
                 </div>
               </div>
@@ -301,71 +314,71 @@ const Resume = () => {
           {/* Sidebar Column */}
           <div className="col-span-2 space-y-4">
             <section>
-              <SectionTitle icon={Monitor} title="实习与工作" />
+              <SectionTitle icon={Monitor} title="Experience" />
 
               <ExperienceCard
-                company="中国科学技术大学"
-                department="综合性国家科学中心人工智能研究院"
-                role="全栈开发实习生"
+                company="University of Science and Technology of China"
+                department="Artificial Intelligence Research Institute"
+                role="Full Stack Development Intern"
                 date="2022 - 2024"
                 tags={['LLM', 'Elasticsearch', 'GCP/AWS', 'Kubernetes', 'PostgreSQL']}
                 img="https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Logo_of_University_of_Science_and_Technology_of_China.svg/1200px-Logo_of_University_of_Science_and_Technology_of_China.svg.png"
                 imgWidth={36}
               >
-                <p className="mb-2">设计实现基于差分隐私计算的对话知识库及 P2P 算力平台，支持 BERTopic 知识归类和 GPT Embeddings 向量关联搜索。</p>
-                <p className="mb-2">通过 SQL 触发器实现百万级消息的实时同步，部署容器按需自动扩容和 DevOps 流水线。</p>
+                <p className="mb-2">Designed and implemented differential privacy-based Q&A knowledge base and P2P computing platform, supporting BERTopic knowledge classification and GPT Embeddings vector RAG search.</p>
+                <p className="mb-2">Implemented real-time synchronization of million-level messages using SQL triggers, deployed container auto-scaling and DevOps pipeline.</p>
               </ExperienceCard>
 
               <ExperienceCard
-                company="腾讯"
-                role="前端开发实习生"
+                company="Tencent"
+                role="Frontend Development Intern"
                 date="2020 - 2021"
                 tags={['React', 'ECharts.js', 'Node.js']}
-                img="https://logodownload.org/wp-content/uploads/2019/08/tencent-logo-0.png"
+                img="https://logos-world.net/wp-content/uploads/2024/07/Tencent-Logo.jpg"
                 imgWidth={36}
               >
-                <p className="mb-2">为微信和腾讯新闻内容管理系统自定义可视化组件库，支持 2.47 亿月活 App 新闻文章编辑和缓存。</p>
+                <p className="mb-2">Customized visualization component library for WeChat and Tencent News content management system, supporting article editing and caching for 247M monthly active app users.</p>
               </ExperienceCard>
 
               <ExperienceCard
-                company="Face++ 旷视研究院"
-                role="互动游戏开发实习生"
+                company="Face++ Megvii Research"
+                role="Interactive Game Development Intern"
                 date="2018 - 2019"
                 tags={['Three.js', 'WebCanvas', 'CV']}
                 img="https://pbs.twimg.com/profile_images/1239849896124923906/zZmmbhm4_400x400.jpg"
                 imgWidth={36}
               >
-                <p>利用基于摄像头的人体骨骼视觉识别框架，开发实时动作捕捉控制的“街头霸王”风格 H5 格斗游戏。</p>
+                <p>Developed a Street Fighter style H5 fighting game using camera-based human skeleton visual recognition framework for real-time motion capture.</p>
               </ExperienceCard>
             </section>
 
             <section>
-              <SectionTitle icon={Award} title="学术活动" />
+              <SectionTitle icon={Award} title="Academic Activities" />
               <div className="space-y-1">
                 <ActivityCard
-                  organization="中国人民大学"
-                  role="《数字人文研究》期刊学生审稿人"
+                  organization="Renmin University of China"
+                  role="Student Reviewer for Digital Humanities Research Journal"
                 />
                 <ActivityCard
-                  organization="牛津大学"
-                  role="2024年牛津数字人文暑期学校"
+                  organization="University of Oxford"
+                  role="2024 DH Oxford Summer School"
                 />
                 <ActivityCard
-                  organization="爱丁堡大学"
-                  role="2024年数字人文与研究软件工程暑期学校"
-                  detail="全额奖学金"
+                  organization="University of Edinburgh"
+                  role="2024 DH×RSE Summer School"
+                  detail="Full Scholarship"
                 />
               </div>
             </section>
 
             <section>
-              <SectionTitle icon={ExternalLink} title="展览经历" />
+              <SectionTitle icon={ExternalLink} title="Exhibitions" />
               <div className="space-y-2">
                 <div className="group hover:translate-x-1 transition-transform duration-200">
                   <h4 className="text-xs font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
                     Out of the Blue Drill Hall
                   </h4>
-                  <p className="text-xs text-gray-700">混合媒体（虚拟现实）组</p>
+                  <p className="text-xs text-gray-700">Mixed Media (Virtual Reality) Section</p>
                   <p className="text-xs text-gray-500">2024.11</p>
                 </div>
 
@@ -373,15 +386,15 @@ const Resume = () => {
                   <h4 className="text-xs font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
                     Flux Wave: Bounce
                   </h4>
-                  <p className="text-xs text-gray-700">数字时尚 AR & VR 分区</p>
+                  <p className="text-xs text-gray-700">Digital Fashion AR & VR Division</p>
                   <p className="text-xs text-gray-500">2023.07</p>
                 </div>
 
                 <div className="group hover:translate-x-1 transition-transform duration-200">
                   <h4 className="text-xs font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
-                    RCA2023毕业展
+                    RCA2023 Graduation Show
                   </h4>
-                  <p className="text-xs text-gray-700">巴特西和肯辛顿校区</p>
+                  <p className="text-xs text-gray-700">Battersea and Kensington Campus</p>
                   <p className="text-xs text-gray-500">2023.06</p>
                 </div>
               </div>
