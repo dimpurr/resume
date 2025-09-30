@@ -42,7 +42,7 @@ const ProjectCard = ({ title, subtitle, children }) => (
       <div>
         <span className="text-sm font-semibold text-gray-700">{title}</span>
         {subtitle && (
-          <span className="text-xs text-blue-600 ml-2 before:content-['|'] before:mr-2 before:text-gray-300">
+          <span className="text-sm text-blue-600 ml-2 before:content-['|'] before:mr-2 before:text-gray-300">
             {subtitle}
           </span>
         )}
@@ -114,37 +114,53 @@ const Resume = () => {
         }
       `}</style>
 
-      <div className="p-4">
+      <div className="p-4 px-6">
         {/* Header Section */}
-        <header className="mb-6">
-          <div className="flex flex-col gap-1">
+        <header className="mb-[0px] relative pl-5">
+          <div className="absolute left-0 top-4 w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600"></div>
+          <div className="absolute left-[5px] top-6 h-full w-[1px] bg-gradient-to-b from-blue-200 to-transparent"></div>
+
+          <div className="flex flex-col gap-2">
             {/* Name and Title */}
-            <div className="flex items-baseline">
-              <h1 className="text-2xl font-bold text-gray-800">Yang Chen</h1>
-              <span className="ml-2 text-base text-gray-500">
+            <div>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+                Yang Chen
+              </h1>
+              <p className="text-base text-gray-600 mt-0 mb-[-4px]">
                 Digital Arts & Humanities • Research Software Engineering
-              </span>
+              </p>
             </div>
 
             {/* Contact Info */}
-            <div className="flex items-center gap-6 text-sm text-gray-600">
-              <a href="mailto:dimcheny@gmail.com" className="flex items-center hover:text-blue-600 transition-colors">
-                <Mail size={14} className="mr-1.5" />dimcheny@gmail.com
+            <div className="flex items-center flex-wrap gap-4 text-sm text-gray-600">
+              <a href="mailto:dimcheny@gmail.com" className="flex items-center hover:text-blue-600 transition-colors group">
+                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors mr-2">
+                  <Mail size={14} className="text-blue-600" />
+                </div>
+                dimcheny@gmail.com
               </a>
               <span className="flex items-center">
-                <Phone size={14} className="mr-1.5" />+86 13246174701
+                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mr-2">
+                  <Phone size={14} className="text-blue-600" />
+                </div>
+                +86 13246174701
               </span>
-              <a href="https://ianyangchen.com" className="flex items-center hover:text-blue-600 transition-colors">
-                <Globe size={14} className="mr-1.5" />ianyangchen.com
+              <a href="https://ianyangchen.com" className="flex items-center hover:text-blue-600 transition-colors group">
+                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors mr-2">
+                  <Globe size={14} className="text-blue-600" />
+                </div>
+                ianyangchen.com
               </a>
-              <a href="https://linkedin.com/in/dimchen" className="flex items-center hover:text-blue-600 transition-colors">
-                <Linkedin size={14} className="mr-1.5" />linkedin.com/in/dimchen
+              <a href="https://linkedin.com/in/dimchen" className="flex items-center hover:text-blue-600 transition-colors group">
+                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors mr-2">
+                  <Linkedin size={14} className="text-blue-600" />
+                </div>
+                linkedin.com/in/dimchen
               </a>
             </div>
           </div>
         </header>
-
-        <div className="grid grid-cols-7 gap-2">
+        <div className="grid grid-cols-7 gap-4">
           {/* Main Content Column */}
           <div className="col-span-5 space-y-4">
             <section>
@@ -162,17 +178,10 @@ const Resume = () => {
                 </CourseSection>
 
                 <ProjectCard
-                  title="AI Three Kingdoms"
+                  title="Digital History Platform"
                   subtitle="Research Center for Digital Humanities of Peking University"
                 >
-                  "Intelligent-Narrative Symbiosis: AI and LLMs in Digital Storytelling"
-                </ProjectCard>
-
-                <ProjectCard
-                  title="Research Guide Digitization & Translation Crowdsourcing"
-                  subtitle="KCL Archive"
-                >
-                  Designing standardized metadata, digital catalogs, and internationalization platform for WWI research guide series
+                  Developed an LLM-assisted system for extracting <u>cultural ontologies & relationships</u> from classical Chinese biographical texts, enabling real-time RAG Q&A and GIS visualization
                 </ProjectCard>
 
                 {/* <ProjectCard
@@ -186,8 +195,17 @@ const Resume = () => {
                   title="Accepted Paper in Digital Narratology"
                   subtitle="Chinese Digital Humanities Conference 2024"
                 >
-                  "Intelligent-Narrative Symbiosis: AI and LLMs in Digital Storytelling", (In Chinese) explored technical-narrative collaboration frameworks in AI-enhanced digital storytelling, with focus on system evolution and interaction patterns
+                  "Intelligent-Narrative Symbiosis: AI and LLMs in Digital Storytelling", (In Chinese) explored technical-narrative collaboration frameworks in <u>AI-enhanced digital storytelling</u>, with focus on system evolution and interaction patterns
                 </ProjectCard>
+
+
+                <ProjectCard
+                  title="Research Guide Digitization & Translation Crowdsourcing"
+                  subtitle="KCL Archive"
+                >
+                  Designing standardized <u>Dublin-Core based metadata</u> schema and digital catalog infrastructure for WWI research guides with crowdsourcing translation and interactive timeline
+                </ProjectCard>
+
               </TimelineItem>
 
               <TimelineItem date="2022 - 2023" imgWidth={48} img="rca.jpg">
@@ -200,14 +218,14 @@ const Resume = () => {
                   title="Fuzzy Graph Network-based Medical Decision Support System"
                   subtitle="ICBS Innovation Lab"
                 >
-                  Developed graph-based clinical decision support system using graph database and NLP for medical guideline digitization, transformed complex NHS and BNF medical guidelines into interactive flowcharts
+                  Developed graph-based clinical decision support system using <u>graph database and NLP for medical guideline digitization</u>, transformed complex NHS and BNF medical guidelines into interactive flowcharts
                 </ProjectCard>
 
                 <ProjectCard
                   title="VR Crowd Flow Analysis"
                   subtitle="Imperial College Centre for Transport Engineering & Modeling"
                 >
-                  Developed 3D modeling and server monitoring modules using ViRSE framework and Unreal Engine,
+                  Developed 3D modeling and server monitoring using <u>ViRSE VR framework and Unreal Engine</u>,
                   supporting real-time high-precision data collection for 100 online users
                 </ProjectCard>
 
@@ -215,8 +233,7 @@ const Resume = () => {
                   title="Parametric Generative VR Narrative Space"
                   subtitle="Centre Pompidou IRCAM Project Exhibition"
                 >
-                  Developed dynamic world generation using Houdini Engine for UE, implementing physics
-                  simulation and collision systems, with real-time LLM dialogue generation and MetaSound spatial audio
+                  Developed dynamic world generation using Houdini Engine for UE, implementing physics collision systems, with real-time <u>LLM and MetaSound spatial audio dialogue generation</u>
                 </ProjectCard>
               </TimelineItem>
 
@@ -227,9 +244,8 @@ const Resume = () => {
                 </div>
 
                 <CourseSection title="Key Courses">
-                  Java (SE/EE), Web Services, Python, Big Data Mining, Artificial Intelligence, Software Engineering,
-                  Object-Oriented Design, Data Structures & Algorithms, Mobile App Development, Database Systems,
-                  Computer Networks
+                  Java (SE/EE), Computer Networks & Web Services, Python, Data Mining, Software Engineering,
+                  OOP Design, Data Structures & Algorithms, Database Design, Mobile App Dev, HCI
                 </CourseSection>
 
                 <ProjectCard
@@ -237,14 +253,14 @@ const Resume = () => {
                   subtitle="Beijing Key Lab of ITSoftware and Multimedia"
                 >
                   Integrated multiple real-time sensors and physical simulation systems to design and implement
-                  full-basin water quality monitoring visualization dashboard
+                  full-basin <u>water quality monitoring visualization dashboard</u>
                 </ProjectCard>
 
                 <ProjectCard
-                  title="Tencent Game Player Lifecycle Analysis"
+                  title="Tencent User Lifecycle Analysis"
                   subtitle="Institute of Automation, Chinese Academy of Sciences"
                 >
-                  Integrated graph structures and sequence features for relationship extraction, data analysis,
+                  Integrated <u>graph structures and sequence features for game player user</u> relationship extraction, data analysis,
                   and visualization, joint project with Microsoft Research Asia
                 </ProjectCard>
 
@@ -325,8 +341,8 @@ const Resume = () => {
                 img="https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Logo_of_University_of_Science_and_Technology_of_China.svg/1200px-Logo_of_University_of_Science_and_Technology_of_China.svg.png"
                 imgWidth={36}
               >
-                <p className="mb-2">Designed and implemented differential privacy-based Q&A knowledge base and P2P computing platform, supporting BERTopic knowledge classification and GPT Embeddings vector RAG search.</p>
-                <p className="mb-2">Implemented real-time synchronization of million-level messages using SQL triggers, deployed container auto-scaling and DevOps pipeline.</p>
+                <p className="mb-2">Designed and implemented differential privacy-based Q&A knowledge base and P2P computing platform, with <u>BERTopic knowledge classification & GPT Embeddings vector RAG search</u>.</p>
+                <p className="mb-2">Implemented real-time synchronization of million-scale messages using SQL triggers, deployed container auto-scaling and DevOps pipeline.</p>
               </ExperienceCard>
 
               <ExperienceCard
@@ -337,7 +353,7 @@ const Resume = () => {
                 img="https://logos-world.net/wp-content/uploads/2024/07/Tencent-Logo.jpg"
                 imgWidth={36}
               >
-                <p className="mb-2">Customized visualization component library for WeChat and Tencent News content management system, supporting article editing and caching for 247M monthly active app users.</p>
+                <p className="mb-2">Customized <u>visualization component library</u> for WeChat and Tencent News content management system, supporting article editing and caching for 247M monthly active app users.</p>
               </ExperienceCard>
 
               <ExperienceCard
@@ -348,7 +364,7 @@ const Resume = () => {
                 img="https://pbs.twimg.com/profile_images/1239849896124923906/zZmmbhm4_400x400.jpg"
                 imgWidth={36}
               >
-                <p>Developed a Street Fighter style H5 fighting game using camera-based human skeleton visual recognition framework for real-time motion capture.</p>
+                <p>Developed a Street Fighter style H5 fighting game using camera-based human skeleton recognition framework for <u>real-time motion capture</u>.</p>
               </ExperienceCard>
             </section>
 
